@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './account/account.component';
 import { AgmCoreModule, AgmMap, MapsAPILoader} from '@agm/core';
 import { SharedModule } from '../shared/shared.module';
+import { TimeoutComponent } from './timeout/timeout.component';
 
 
 
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     ListComponent,
     AddEditComponent,
     AccountComponent,
+    TimeoutComponent,
 
   ],
   imports: [
@@ -43,6 +45,6 @@ import { SharedModule } from '../shared/shared.module';
     // GoogleMapsAPIWrapper,
     
     ],
-  entryComponents:[AddEditComponent]
+  entryComponents:[AddEditComponent, TimeoutComponent]
 })
 export class UsersModule { }
