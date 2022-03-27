@@ -9,6 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './account/account.component';
 import { AgmCoreModule, AgmMap, MapsAPILoader} from '@agm/core';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,12 +18,14 @@ import { AgmCoreModule, AgmMap, MapsAPILoader} from '@agm/core';
     LayoutComponent,
     ListComponent,
     AddEditComponent,
-    AccountComponent
+    AccountComponent,
+
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     NgxPaginationModule,
+    SharedModule,
     FormsModule,ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyAehe8kkiQMte4oMUPtlBkjbdrHpjLz7x0',

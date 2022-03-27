@@ -1,13 +1,18 @@
+<div class="row justify-content-end" style="height:100px">
+    <div class="col-md-3">
+        <alert></alert>
+    </div>
+</div>
 <div class="container row">
-   
+        <h3>Update your details</h3>
         <div class="col-md-6 offset-md-4" >
                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div class="form-row">
                         <div class="form-group col">
-                            <label for="name"> Name</label>
-                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                            <label for="name"> Email</label>
+                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
                             <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                                <div *ngIf="f.name.errors.required">First Name is required</div>
+                                <div *ngIf="f.name.errors.required">Name is required</div>
                             </div>
                         </div>
                     
@@ -16,9 +21,9 @@
                     
                         <div class="form-group col">
                             <label for="name">Job </label>
-                            <input type="text" formControlName="job" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                            <input type="text" formControlName="job" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.job.errors }" />
                             <div *ngIf="submitted && f.job.errors" class="invalid-feedback">
-                                <div *ngIf="f.job.errors.required">Last Name is required</div>
+                                <div *ngIf="f.job.errors.required">Job is required</div>
                             </div>
                         </div>
                     </div>

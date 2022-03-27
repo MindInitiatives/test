@@ -9,7 +9,16 @@
     background-color: green !important;
     border-color: green;
 }
-
+.btn-outline-primary{
+    color: #fff;
+    background-color: #fe5858;
+    border-color: #fe5858;
+}
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active{
+    color: #fff;
+    background-color: green !important;
+    border-color: green;
+}
 .btn-primary-inverse{
    
     color: #fff;

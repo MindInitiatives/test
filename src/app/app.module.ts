@@ -12,11 +12,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { BackendProvider } from './helpers/backend';
-import { AlertComponent } from './_components';
+// import { AlertComponent } from './_components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
 import { MapsAPILoader } from '@agm/core';
 import { AgmCoreModule } from '@agm/core';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -27,7 +28,8 @@ import { AgmCoreModule } from '@agm/core';
     SignInComponent,
     HomeComponent,
     UsersComponent,   
-    AlertComponent, ModalComponent
+    // AlertComponent, 
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -35,15 +37,17 @@ import { AgmCoreModule } from '@agm/core';
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,
+    SharedModule,
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyAehe8kkiQMte4oMUPtlBkjbdrHpjLz7x0',
       libraries: ['places']
     })
 
   ],
-  exports:[
-    AlertComponent
-  ],
+  
+  // exports:[
+  //   AlertComponent
+  // ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA

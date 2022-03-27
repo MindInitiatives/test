@@ -22,7 +22,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.isAddMode = !this.id;
+   this.id = 12
     console.log(this.id)
     this.form = this.fb.group({
       name: ['', Validators.required],
