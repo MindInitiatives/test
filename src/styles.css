@@ -1,8 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 .btn-primary{
     color: #fff;
-    background-color: #fe5858;
-    border-color: #fe5858;
+    background-color: #fe5858 !important;
+    border-color: #fe5858 !important;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active{
+    color: #fff;
+    background-color: green !important;
+    border-color: green;
+}
+.btn-white{
+    color: #fff;
+    background-color: transparent !important;
+    border-color: #fe5858 !important;
+    border: 2px solid white !important ;
+    color: white !important;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active{
     color: #fff;
@@ -11,8 +23,8 @@
 }
 .btn-outline-primary{
     color: #fff;
-    background-color: #fe5858;
-    border-color: #fe5858;
+    background-color: #fe5858 !important;
+    border-color: #fe5858 !important;
 }
 .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active{
     color: #fff;
@@ -27,7 +39,7 @@
 }
 .btn-primary-inverse:hover, .btn-primary-inverse:focus, .btn-primary-inverse:active, .btn-primary-inverse.active{
     color: #fff;
-    background-color: #fe5858;
-    border-color: #fe5858;
+    background-color: #fe5858 !important;
+    border-color: #fe5858 !important;
 }
 
