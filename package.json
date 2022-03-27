@@ -14,8 +14,10 @@
   "dependencies": {
     "@agm/core": "^3.0.0-beta.0",
     "@angular/animations": "~12.2.0",
+    "@angular/cli": "~12.2.14",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
+    "@angular/compiler-cli": "~12.2.0",
     "@angular/core": "~12.2.0",
     "@angular/forms": "~12.2.0",
     "@angular/platform-browser": "~12.2.0",
@@ -49,7 +51,7 @@
     "typescript": "~4.3.5"
   },
   "engines": {
-    "node": "6.11.0",
-    "npm": "3.10.10"
+    "node": "12.14.0",
+    "npm": "6.13.4"
   }
 }
