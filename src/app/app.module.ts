@@ -18,6 +18,7 @@ import { ModalComponent } from './modal/modal.component';
 import { MapsAPILoader } from '@agm/core';
 import { AgmCoreModule } from '@agm/core';
 import { SharedModule } from './shared/shared.module';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 
 
 
@@ -38,6 +39,7 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     NgbModule,
     SharedModule,
+    NgIdleKeepaliveModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyAehe8kkiQMte4oMUPtlBkjbdrHpjLz7x0',
       libraries: ['places']
