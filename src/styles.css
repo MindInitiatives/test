@@ -42,4 +42,9 @@
     background-color: #fe5858 !important;
     border-color: #fe5858 !important;
 }
+.background-primary{
+    background-color: #fe5858 !important;
+    padding: 5px;
+    color: white !important;
+}
 
