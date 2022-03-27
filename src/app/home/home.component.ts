@@ -8,6 +8,10 @@ import {AgmMap,MapsAPILoader  } from '@agm/core';
 import { first } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../services/alert.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
+import { Keepalive } from '@ng-idle/keepalive';
+import { TimeoutComponent } from '../users/timeout/timeout.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,16 +30,55 @@ export class HomeComponent implements OnInit {
   currentLocation:any
   private geoCoder: any
 
+  idleState = 'Not started.';
+  timedOut = false;
+  lastPing: any = null;
+  countdown?: number;
+
   constructor( 
     private accountService:AccountService,
     private http:HttpClient,private MapsAPILoader: MapsAPILoader, private ngZone:NgZone,
     private route: ActivatedRoute,
     private router: Router,
-   
+    private idle: Idle, private keepalive: Keepalive,private _modalService:NgbModal,
     private alertService : AlertService
 
     ) {
     this.user = this.accountService.userToken
+      console.log(this.user)
+    let countdown = 5
+    let timeout = 600
+    // sets an idle timeout of 10 minutes, for testing purposes.
+    idle.setIdle(timeout);
+    // sets a timeout period of 5 seconds. after 5 seconds of inactivity, the user will be considered timed out.
+    idle.setTimeout(countdown);
+    // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
+    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+
+    idle.onIdleEnd.subscribe(() => this.idleState = 'No longer idle.');
+    idle.onTimeout.subscribe(() => {
+      this.idleState = 'Timed out!';
+      this.timedOut = true;
+      this.accountService.logout();
+    });
+    idle.onIdleStart.subscribe(() => {
+      this.idleState = 'You\'ve gone idle!'
+      const modalRef = this._modalService.open(TimeoutComponent);
+      modalRef.componentInstance.message = this.idleState;
+      modalRef.componentInstance.countdown = countdown;
+    });
+    idle.onTimeoutWarning.subscribe((countdown) => {
+      this.idleState = 'You will time out in ' + countdown + ' seconds!'
+      console.log(this.idleState)
+    });
+    idle.watch();
+    // sets the ping interval to 15 seconds
+    keepalive.interval(15);
+    keepalive.start();
+    keepalive.onPing.subscribe(() => {
+      this.lastPing = new Date()
+      console.log("ping " + this.lastPing)
+    });
    }
 
   ngOnInit(): void {

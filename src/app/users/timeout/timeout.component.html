@@ -1,12 +1,27 @@
 
 <div class="container">
-    <div class="modal-header text-center">
-        <h4 class="modal-title text-center" id="modal-basic-title">
-          <span class="text-center" style="text-align: center !important;"> LOGOUT </span>
-        </h4>
-        <!-- <button  type="button" class="close" aria-label="Close" (click)="close()">
-        <span aria-hidden="true">&times;</span>
-        </button> -->
+    <div class="modal-header">
+        <h4 class="modal-title text-center">{{message}}</h4>
+      </div>
+      <div class="p-20 modal-body text-center">
+        <h2>{{countdown}}</h2>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group">
+            <button  class="btn btn-secondary mr-4" (click)="stayLogged()">
+               
+                Stay logged in
+            </button>
+            <a (click)="logout()" class="btn btn-danger">Logout</a>
+        </div>
+      </div>
+    <!-- <div class="modal-header text-center">
+        <p class="modal-title text-center" id="modal-basic-title">
+          <span class="text-center" style="text-align: center !important;"> {{message}} </span>
+        </p>
+        </div>
+        <div class="modal-body text-center">
+            <h4>{{countdown}}</h4>
         </div>
         <div>
               
@@ -19,5 +34,5 @@
                         <a (click)="logout()" class="btn btn-danger">Logout</a>
                     </div>
               
-        </div>
+        </div> -->
     </div>

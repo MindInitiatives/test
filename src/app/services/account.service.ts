@@ -11,6 +11,9 @@ import { User } from '../models';
 export class AccountService{
     private userSubject!: BehaviorSubject<User>;
     public user :Observable<User>;
+    email!: string | null;
+    password!: string | null;
+    credentials: any;
 
     constructor(
         private router:Router,
@@ -29,13 +32,17 @@ export class AccountService{
             
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
+            const encodedCredentials = this.encodeString(email)+":"+this.encodeString(password)
+            sessionStorage.setItem('credentials', encodedCredentials)
             this.userSubject.next(user);
             this.startRefreshTokenTimer();
             return user;
         }));
     }
     refreshToken() {
-        return this.http.post<any>(`${environment.apiUrl}/users/refresh-token`, {}, { withCredentials: true })
+        this.getCredentials();
+        return this.http.post<User>(`${environment.apiUrl}/login`, this.credentials)
+        // return this.http.post<any>(`${environment.apiUrl}/users/refresh-token`, {}, { withCredentials: true })
             .pipe(map((user) => {
                 this.userSubject.next(user);
                 this.startRefreshTokenTimer();
@@ -61,6 +68,29 @@ export class AccountService{
     private stopRefreshTokenTimer() {
         clearTimeout(this.refreshTokenTimeout);
     }
+
+    encodeString(string: string) {
+        var encodedString = btoa(string);
+        return encodedString;
+    }
+
+    decodeString(encodedString: any) {
+        var decodedString = atob(encodedString);
+        return decodedString;
+    }
+
+    getCredentials() {
+        const credentials = sessionStorage.getItem('credentials') || null 
+        console.log(credentials)
+        const email = credentials?.split(':')[0]
+        const password = credentials?.split(':')[1]
+        this.credentials = {
+             email : this.decodeString(email),
+             password : this.decodeString(password)
+         }
+
+        console.log(this.credentials)
+    }
     getIp(){
         return this.http.get<any>("http://api.ipify.org/?format=json")
       }
@@ -75,7 +105,8 @@ export class AccountService{
         // this.stopRefreshTokenTimer();
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
-        
+        sessionStorage.removeItem('email');
+        sessionStorage.removeItem('password');
         this.userSubject.next(null!);
         this.router.navigate(['/account/signin'])
     }
