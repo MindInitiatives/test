@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       email: ['', [Validators.required,Validators.email]],
-      password : ['', [Validators.required,Validators.minLength(8)]]
+      password : ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]]
     })
   }
    // convenience getter for easy access to form fields

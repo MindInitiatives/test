@@ -29,11 +29,11 @@
                ></div>
   
           <div class="card bg-glass ">
-            <div class="pl-3 pt-3">
+            <div class="pl-3 pt-3 d-flex justify-content-center">
                <img src="../../../assets/img/logo.png" height="100" width="100" alt="logo" >
             </div>
             <div class="card-body px-4 py-5 px-md-5">
-              <h3 class="mb-5 mt-2">Login</h3>
+              <h3 class="mb-5 mt-0">Login</h3>
               <form [formGroup]="form" (ngSubmit)= "onSubmit()" novalidate autocomplete="false">
              <alert></alert>
                 <!-- Email input -->
@@ -86,6 +86,9 @@
                      </div>
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.pattern">Password must have minimum password length (8); a mixture of alphanumeric and a special
+                          character</div>
+
                     </div>
                 </div>
   
