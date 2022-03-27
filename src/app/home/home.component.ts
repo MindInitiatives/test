@@ -5,6 +5,9 @@ import { throwError } from 'rxjs';
 import { User } from '../models/user';
 import { AccountService } from '../services/account.service';
 import {AgmMap,MapsAPILoader  } from '@agm/core'; 
+import { first } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -25,7 +28,11 @@ export class HomeComponent implements OnInit {
 
   constructor( 
     private accountService:AccountService,
-    private http:HttpClient,private MapsAPILoader: MapsAPILoader, private ngZone:NgZone
+    private http:HttpClient,private MapsAPILoader: MapsAPILoader, private ngZone:NgZone,
+    private route: ActivatedRoute,
+    private router: Router,
+   
+    private alertService : AlertService
 
     ) {
     this.user = this.accountService.userToken
@@ -76,6 +83,22 @@ export class HomeComponent implements OnInit {
     this.accountService.getLocation(this.ipAddress).subscribe((res)=>{
      this.address= res?.city + ' ' + res?.country
     })
+  }
+  refresh(){
+    this.accountService.refreshToken()
+   .pipe(first())
+   .subscribe({
+     next:()=>{
+     // get return url from query parameters or default to home page
+      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      this.router.navigateByUrl(returnUrl);
+     },
+     error:error =>{
+      this.alertService.error(error.error.error);
+      // this.alertService.error(error);
+    
+     }
+   })
   }
  
 

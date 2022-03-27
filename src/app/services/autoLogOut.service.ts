@@ -4,8 +4,8 @@ import { Injectable, NgZone } from '@angular/core';
 import * as store from 'store';
 import { AccountService } from './account.service';
 
-const MINUTES_UNITL_AUTO_LOGOUT = 5 // in Minutes
-const CHECK_INTERVALL = 1000 // in ms
+const MINUTES_UNITL_AUTO_LOGOUT = 1 // in Minutes
+const CHECK_INTERVALL = 10000 // in ms
 const STORE_KEY = 'lastAction';
 
 @Injectable()
