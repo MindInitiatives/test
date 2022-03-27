@@ -1,0 +1,14 @@
+<div class="p-4">
+    <div class="container">
+        <h1>Hi!</h1>
+        <p>You're logged in to the homepage </p>
+        Current Location: {{address}}
+        <p><a routerLink="/users">Manage Users</a></p>
+        <agm-map style="height: 300px;" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+            <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+              ></agm-marker>
+        </agm-map>
+          
+          
+    </div>
+</div>

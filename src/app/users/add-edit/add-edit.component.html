@@ -1,0 +1,41 @@
+<div class="container">
+<div class="modal-header text-center">
+    <h4 class="modal-title text-center" id="modal-basic-title">
+      <span class="text-center" style="text-align: center !important;"> Update details for {{data?.first_name}} </span>
+    </h4>
+    <!-- <button  type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+    </button> -->
+    </div>
+    <div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="name"> Name</label>
+                        <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">First Name is required</div>
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="form-row">
+                
+                    <div class="form-group col">
+                        <label for="name">Job </label>
+                        <input type="text" formControlName="job" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                        <div *ngIf="submitted && f.job.errors" class="invalid-feedback">
+                            <div *ngIf="f.job.errors.required">Last Name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-secondary mr-4">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Update
+                    </button>
+                    <a (click)="close()" class="btn btn-danger">Cancel</a>
+                </div>
+            </form>
+    </div>
+</div>
