@@ -56,7 +56,6 @@ export class BackendInterceptor implements HttpInterceptor {
         function register(){
             
             const user = body
-console.log(user);
 
             if (users.find((x: { email: any; }) => x.email === user.email)){
                console.log();

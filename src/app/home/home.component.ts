@@ -85,8 +85,7 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getIPAddress();
-    this.getLocation()
+   
     this.MapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
@@ -118,18 +117,6 @@ export class HomeComponent implements OnInit {
     });
   }
  
-  getIPAddress()
-  {
-    this.accountService.getIp().subscribe((res:any)=>{
-      this.ipAddress = res.ip;
-    });
-  }
-  getLocation(){
-   
-    this.accountService.getLocation(this.ipAddress).subscribe((res)=>{
-     this.address= res?.city + ' ' + res?.country
-    })
-  }
   refresh(){
     this.accountService.refreshToken()
    .pipe(first())

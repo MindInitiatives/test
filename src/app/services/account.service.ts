@@ -61,7 +61,7 @@ export class AccountService{
         const expires = new Date(jwtToken * 1000);
         const timeout = expires.getTime() - Date.now() - (60 * 1000);
         this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
-        console.log(this.refreshTokenTimeout,'hey here');
+        // console.log(this.refreshTokenTimeout,'hey here');
         
     }
 

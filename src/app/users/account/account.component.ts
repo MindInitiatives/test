@@ -23,7 +23,6 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
    this.id = 12
-    console.log(this.id)
     this.form = this.fb.group({
       name: ['', Validators.required],
       job: ['', Validators.required],
@@ -34,7 +33,7 @@ export class AccountComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
-    console.log(this.form.value)
+    // console.log(this.form.value)
     this.submitted = true;
 
     // reset alerts on submit
