@@ -14,11 +14,18 @@ import { TimeoutComponent } from './users/timeout/timeout.component';
 export class AppComponent {
   title = 'testTopup';
   user!: User;
+
+  collapsed = false;
+     
   constructor(private accountService: AccountService) {
     this.accountService.user.subscribe(x => this.user = x);
 }
 
   logout() {
     this.accountService.logout();
+
+}
+toggleCollapsed(): void {
+  this.collapsed = !this.collapsed;
 }
 }

@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
     this.user = this.accountService.userToken
       console.log(this.user)
     let countdown = 5
-    let timeout = 6
+    let timeout = 600
     // sets an idle timeout of 10 minutes, for testing purposes.
     idle.setIdle(timeout);
     // sets a timeout period of 5 seconds. after 5 seconds of inactivity, the user will be considered timed out.
