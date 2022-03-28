@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from '../services/alert.service';
 import { UserService } from '../services/user.service';
 import { AddEditComponent } from '../users/add-edit/add-edit.component';
@@ -14,7 +14,9 @@ export class ModalComponent implements OnInit {
   @Input() public user:any;
   constructor(private userService:UserService,
     private alertService :AlertService,
-    private _modalService: NgbModal
+    private _modalService: NgbModal,
+    public activeModal: NgbActiveModal
+    
 
     ) { }
 
@@ -22,7 +24,7 @@ export class ModalComponent implements OnInit {
     console.log(this.user)
   }
  close(){
-
+  this.activeModal.close();
  }
  remove(id:number){
   this.userService.removeUser(id)

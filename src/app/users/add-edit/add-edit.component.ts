@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/services/alert.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,7 +19,7 @@ export class AddEditComponent implements OnInit {
   loading = false;
   submitted = false;
        
-  constructor(private fb:FormBuilder, private router:Router, private alertService:AlertService, private userService:UserService, private route:ActivatedRoute) { }
+  constructor( public activeModal: NgbActiveModal, private fb:FormBuilder, private router:Router, private alertService:AlertService, private userService:UserService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -62,6 +63,6 @@ updateUser(){
 })
 }
 close(){
-  window.location.reload()
+  this.activeModal.close();
 }
 }
