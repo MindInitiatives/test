@@ -8,6 +8,7 @@
         
         <p>Current Location: {{address}} </p>
         <!-- <p><a routerLink="/users">Manage Users</a></p> -->
+        
         <agm-map style="height: 300px;" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
             <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
               ></agm-marker>

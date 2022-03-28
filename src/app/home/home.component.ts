@@ -52,6 +52,9 @@ export class HomeComponent implements OnInit {
     idle.setIdle(timeout);
     // sets a timeout period of 5 seconds. after 5 seconds of inactivity, the user will be considered timed out.
     idle.setTimeout(countdown);
+   
+   
+    
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
