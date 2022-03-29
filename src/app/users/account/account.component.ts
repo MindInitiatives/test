@@ -16,6 +16,7 @@ export class AccountComponent implements OnInit {
     isAddMode!: boolean;
   loading = false;
   submitted = false;
+  fieldTextType!: boolean;
   
   constructor(private fb:FormBuilder, private router:Router, private alertService:AlertService, private userService:UserService, private route:ActivatedRoute) { }
  
@@ -24,8 +25,8 @@ export class AccountComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
    this.id = 12
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      job: ['', Validators.required],
+      // email: ['', [Validators.required,Validators.email]],
+      password : ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]]
      
   });
   }
@@ -67,4 +68,10 @@ updateUser(){
     close(){
 
     }
+
+// <!-- Switching method
+toggleFieldTextType() {
+  this.fieldTextType = !this.fieldTextType;
+}
+
 }
